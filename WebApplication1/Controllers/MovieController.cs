@@ -81,13 +81,13 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult ModifyMovie(int Movie_id)
         {
-            Movie mv = null;
+            //Movie mv = null;
             var FindMovie = MovieList.Where(i => i.Movie_id == Movie_id).FirstOrDefault();
-            if(FindMovie != null)
-            {
-                mv = FindMovie;
-            }
-            return View(mv);
+            //if(FindMovie != null)
+            //{
+            //    mv = FindMovie;
+            //}
+            return View(FindMovie);
         }
         [HttpPost]
         public ActionResult ModifyMovie(Movie mv)
@@ -103,9 +103,9 @@ namespace WebApplication1.Controllers
             }
             return View("getDetails", MovieList);
         }
-        public ActionResult MovieDetils(Movie mv)
-        {
-            return View(mv);
-        }
+        //public ActionResult MovieDetils(Movie mv)
+        //{
+        //    return View(mv);
+        //}
     }
 }
