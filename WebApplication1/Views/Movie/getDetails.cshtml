@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Movie-Details";
+    var movieslst = ViewData.Model;
 }
 
 <h2>Movie_Details</h2>
@@ -12,7 +13,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Movie_id)
+                @Html.DisplayNameFor(model => model.id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Movie_title)
@@ -30,11 +31,11 @@
                 Action
             </th>
         </tr>
-         @foreach (var result in Model)
+         @foreach (var result in movieslst)
          {
         <tr>
             <td>
-                @Html.DisplayFor(Model => result.Movie_id)
+                @Html.DisplayFor(Model => result.id)
             </td>
             <td>
                 @Html.DisplayFor(Model => result.Movie_title)
@@ -49,7 +50,7 @@
                 @Html.DisplayFor(Model => result.Movie_Rating)
             </td>
             <td>
-                @Html.ActionLink("Edit", "ModifyMovie", new { id = result.Movie_id})
+                @Html.ActionLink("Edit", "ModifyMovie", new { id = result.id})
             </td>
         </tr>
          }

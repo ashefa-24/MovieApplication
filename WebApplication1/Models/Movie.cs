@@ -7,7 +7,7 @@ namespace WebApplication1.Models
 {
     public class Movie
     {
-        public int Movie_id { get; set; }
+        public int id { get; set; }
         public string Movie_title { get; set; }
         public string Director { get; set; }
         public string ReleaseDate { get; set; }

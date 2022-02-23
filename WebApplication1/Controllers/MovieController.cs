@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
         {
             new Movie()
             {
-                Movie_id =101,
+                id =101,
                 Movie_title = "The Originals",
                 Director = "Julie",
                 ReleaseDate = "02 / 22 / 2000",
@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
             },
             new Movie()
             {
-                Movie_id =102,
+                id =102,
                 Movie_title = "Money Heist",
                 Director = "Alex Pina",
                 ReleaseDate = "12 / 12 / 2021",
@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
             },
             new Movie()
             {
-                Movie_id =103,
+                id =103,
                 Movie_title = "Dark",
                 Director = "Baran",
                 ReleaseDate = "02 / 05 / 2019",
@@ -37,7 +37,7 @@ namespace WebApplication1.Controllers
             },
             new Movie()
             {
-                Movie_id =104,
+                id =104,
                 Movie_title = "Stranger Things",
                 Director = "Shawn",
                 ReleaseDate = "08 / 09 / 2017",
@@ -45,7 +45,7 @@ namespace WebApplication1.Controllers
             },
             new Movie()
             {
-                Movie_id =105,
+                id =105,
                 Movie_title = "Harry Potter",
                 Director = "J.K. Rowling",
                 ReleaseDate = "09 / 28 / 2007",
@@ -76,24 +76,19 @@ namespace WebApplication1.Controllers
             {
                 MovieList1 = MovieList;
             }
-            return View(MovieList1);
+            ViewData.Model = MovieList1;
+            return View();
         }
         [HttpGet]
-        public ActionResult ModifyMovie(int Movie_id)
+        public ActionResult ModifyMovie(int id)
         {
-            //Movie mv = null;
-            var FindMovie = MovieList.Where(i => i.Movie_id == Movie_id).FirstOrDefault();
-            //if(FindMovie != null)
-            //{
-            //    mv = FindMovie;
-            //}
+            var FindMovie = MovieList.Where(i => i.id == id).FirstOrDefault();
             return View(FindMovie);
         }
         [HttpPost]
         public ActionResult ModifyMovie(Movie mv)
         {
-            //Movie edit_mv = null;
-            var FindMovie = MovieList.Where(i => i.Movie_id == mv.Movie_id).FirstOrDefault();
+            var FindMovie = MovieList.Where(i => i.id == mv.id).FirstOrDefault();
             if(FindMovie != null)
             {
                 FindMovie.Movie_title = mv.Movie_title;
@@ -103,9 +98,5 @@ namespace WebApplication1.Controllers
             }
             return View("getDetails", MovieList);
         }
-        //public ActionResult MovieDetils(Movie mv)
-        //{
-        //    return View(mv);
-        //}
     }
 }

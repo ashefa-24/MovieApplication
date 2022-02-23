@@ -46,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,13 +130,32 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeSDetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="DateValidation\DOBDateValidation.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\EmployeeBLayer.cs" />
+    <Compile Include="Models\EmployeeSDetail.cs">
+      <DependentUpon>Employee_S_Details.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee_S_Details.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee_S_Details.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee_S_Details.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee_S_Details.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee_S_Details.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee_S_Details.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -146,8 +173,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Employee_S_Details.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Employee_S_Details.Context.cs</LastGenOutput>
+      <DependentUpon>Employee_S_Details.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Employee_S_Details.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Employee_S_Details.edmx</DependentUpon>
+      <LastGenOutput>Employee_S_Details.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\Employee_S_Details.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Employee_S_Details.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Employee_S_Details.edmx.diagram">
+      <DependentUpon>Employee_S_Details.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -179,7 +223,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movie\getDetails.cshtml" />
     <Content Include="Views\Movie\ModifyMovie.cshtml" />
-    <Content Include="Views\Movie\MovieDetils.cshtml" />
+    <Content Include="Views\Employee\Signup.cshtml" />
+    <Content Include="Views\EmployeeSDetails\Create.cshtml" />
+    <Content Include="Views\EmployeeSDetails\Delete.cshtml" />
+    <Content Include="Views\EmployeeSDetails\Details.cshtml" />
+    <Content Include="Views\EmployeeSDetails\Edit.cshtml" />
+    <Content Include="Views\EmployeeSDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -196,6 +245,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
